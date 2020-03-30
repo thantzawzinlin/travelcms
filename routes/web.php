@@ -46,7 +46,7 @@ Route::group(['prefix=>admin','auth=>middleware'],function(){
     ]);
     Route::get('posts',[
         'uses'=>'PostsController@index',
-        'as'=>'index'
+        'as'=>'post.index'
     ]);
     Route::get('posts/create',[
         'uses'=>'PostsController@create',

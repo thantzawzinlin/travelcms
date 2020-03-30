@@ -9,16 +9,24 @@
      <div class="card-header">
         Create Post
      </div>
+     @if (count($categories)==0)
+        <div class="alert alert-success">
+          return alert('You have no category .Create one First!');
+        </div>
+        @endif
     @include('includes/message/errors')
      <div class="card-body">
-        
+       
          <form action="{{route('post.store')}}" method="POST" enctype='multipart/form-data'>
         @csrf
           <div class="form-group">
               <label for="title">Title</label>
               <input type="text" name="title" class="form-control">
           </div>
-         
+          <div class="form-group">
+            <label for="slug">Slug</label>
+            <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" placeholder="post-slug">
+          </div>
           
           <div class="form-group">
               <label for="picture">Picture</label>

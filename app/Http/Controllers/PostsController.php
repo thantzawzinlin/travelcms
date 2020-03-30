@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -42,6 +43,8 @@ class PostsController extends Controller
             //'picture'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             'picture'=>'required|image',
             'cat_id'=>'required'
+           // 'slug'=>'required'
+            
         ]);
 
         //dd($request->all());
@@ -54,12 +57,13 @@ class PostsController extends Controller
             'title'=>$request->title,
             'content'=>$request->content,
             'picture'=>'images/'.$imageName,
-            'cat_id'=>$request->cat_id
+            'cat_id'=>$request->cat_id,            
+            'slug' => Str::slug($request->title)
             
 
         ]);
         toastr()->success('Data has been saved successfully!');
-       return redirect()->route('index');
+       return redirect()->route('post.index');
     }
 
     /**
