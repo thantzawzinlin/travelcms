@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts=Post::latest()->get();
+        return view('admin.post.index')->with('posts',$posts);
     }
 
     /**
@@ -23,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.post.create')->with('categories',Category::all());
     }
 
     /**
@@ -34,7 +36,30 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'content'=>'required',
+            //'picture'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'picture'=>'required|image',
+            'cat_id'=>'required'
+        ]);
+
+        //dd($request->all());
+        $image=$request->picture;
+        $imageName = time().$image->getClientOriginalExtension(); 
+
+       $image->move('images',$imageName);
+       
+        $post=Post::create([
+            'title'=>$request->title,
+            'content'=>$request->content,
+            'picture'=>'images/'.$imageName,
+            'cat_id'=>$request->cat_id
+            
+
+        ]);
+        toastr()->success('Data has been saved successfully!');
+       return redirect()->route('index');
     }
 
     /**
@@ -79,6 +104,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $posts=Post::findOrFail($id);
+        $posts->delete();
+        toastr()->success('Data has been deleted successfully!');
+       return redirect()->route('index');
     }
 }

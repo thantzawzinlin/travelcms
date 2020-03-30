@@ -44,4 +44,26 @@ Route::group(['prefix=>admin','auth=>middleware'],function(){
         'uses'=>'CategoriesController@destroy',
         'as'=>'category.delete'
     ]);
+    Route::get('posts',[
+        'uses'=>'PostsController@index',
+        'as'=>'index'
+    ]);
+    Route::get('posts/create',[
+        'uses'=>'PostsController@create',
+        'as'=>'post.create'
+    ]);
+    Route::post('posts/store',[
+        'uses'=>'PostsController@store',
+        'as'=>'post.store'
+    ]);
+    Route::get('posts/edit/{id}',[
+        'uses'=>'PostsController@edit',
+        'as'=>'post.edit'
+    ]);
+    
+    Route::get('posts/delete/{id}',[
+        'uses'=>'PostsController@destroy',
+        'as'=>'post.delete'
+    ]);
+
 });

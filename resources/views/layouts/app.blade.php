@@ -79,8 +79,10 @@
                    @auth
                    <div class="col-lg-4">
                         <ul class="list-group">
-                        <li class="list-group-item"><a href="{{route('index')}}">Category</a></li>
-                        <li class="list-group-item"><a href="{{route('category.create')}}">Create Category</a></li>
+                            <li class="list-group-item"><a href="{{route('index')}}">Category</a></li>
+                            <li class="list-group-item"><a href="{{route('category.create')}}">Create Category</a></li>
+                            <li class="list-group-item"><a href="{{route('index')}}">Post</a></li>
+                            <li class="list-group-item"><a href="{{route('post.create')}}">Create Post</a></li>
                         </ul>
                    </div>
                    @endauth
