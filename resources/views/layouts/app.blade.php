@@ -84,6 +84,8 @@
                             <li class="list-group-item"><a href="{{route('post.index')}}">Post</a></li>
                             <li class="list-group-item"><a href="{{route('post.create')}}">Create Post</a></li>
                             <li class="list-group-item"><a href="{{route('post.trashed')}}">Trashed Post</a></li>
+                            <li class="list-group-item"><a href="{{route('tag.index')}}">Tag</a></li>
+                            <li class="list-group-item"><a href="{{route('tag.create')}}">Create Tag</a></li>
                         </ul>
                    </div>
                     @endif 
