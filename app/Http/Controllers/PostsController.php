@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,8 @@ class PostsController extends Controller
     public function create()
     {
         
-        return view('admin.post.create')->with('categories',Category::all());
+        return view('admin.post.create')->with('categories',Category::all())
+                                        ->with('tags',Tag::all());
     }
 
     /**
@@ -63,6 +65,7 @@ class PostsController extends Controller
             
 
         ]);
+        $post->tags()->attach($request->tags);
         toastr()->success('Data has been saved successfully!');
        return redirect()->route('post.index');
     }

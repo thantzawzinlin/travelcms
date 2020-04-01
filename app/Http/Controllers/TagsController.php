@@ -42,6 +42,7 @@ class TagsController extends Controller
         $tags=Tag::create([
             'tags'=>$request->tags
         ]);
+        
          toastr()->success('Data has been saved successfully!');
          return redirect()->route('tag.index');
     }
