@@ -16,7 +16,8 @@
              <th>Delete</th> 
             </thead>
             <tbody>     
-                 @foreach ($categories as $category)
+                @if ($categories->count()>0)
+                     @foreach ($categories as $category)
                     <tr>
                     
                             <td>{{$category->name}}</td>
@@ -25,7 +26,11 @@
                         
                     </tr>
                 @endforeach
-               
+                @else
+                    <tr  class="bg-warning ">
+                        <td class="text-center">You have no  category for now</td>
+                    </tr>
+                @endif               
             </tbody>
         </table>
     </div>

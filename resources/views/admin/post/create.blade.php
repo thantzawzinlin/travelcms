@@ -9,11 +9,7 @@
      <div class="card-header">
         Create Post
      </div>
-     @if (count($categories)==0)
-        <div class="alert alert-success">
-          return alert('You have no category .Create one First!');
-        </div>
-        @endif
+     
     @include('includes/message/errors')
      <div class="card-body">
        

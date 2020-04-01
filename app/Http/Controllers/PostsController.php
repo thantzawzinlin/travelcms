@@ -26,6 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
+        
         return view('admin.post.create')->with('categories',Category::all());
     }
 
@@ -85,7 +86,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts=Post::findOrFail($id);
+        return view('admin.post.edit')->with('posts',$posts)->with('categories',Category::all());
     }
 
     /**
@@ -97,7 +99,36 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'content'=>'required',
+           
+           
+            'cat_id'=>'required'
+           
+            
+        ]);
+
+        $post=Post::find($id);
+        if($request->hasFile('picture')){
+             $image=$request->picture;
+            $imageName = time().$image->getClientOriginalExtension(); 
+            $image->move('images',$imageName);
+            $post->picture='/images/'. $imageName;
+        }
+       
+       
+       
+            $post->title=$request->title;
+            $post->content=$request->content;
+           
+           $post->cat_id=$request->cat_id;            
+            $post->slug = Str::slug($request->title);
+            $post->save();
+
+       
+        toastr()->success('Data has been updated successfully!');
+       return redirect()->route('post.index');
     }
 
     /**
@@ -111,6 +142,27 @@ class PostsController extends Controller
         $posts=Post::findOrFail($id);
         $posts->delete();
         toastr()->success('Data has been deleted successfully!');
-       return redirect()->route('index');
+       return redirect()->route('post.index');
+    }
+    public function trashed(){
+      
+        //$posts = Post::withTrashed()->get();
+        $posts = Post::onlyTrashed()->get();
+        return view('admin.post.trashed')->with('posts',$posts);
+    }
+    public function restore($id){
+        //Post::restore();
+        //  $posts=Post::find($id);
+        //   $posts->restore();
+          $posts= Post::withTrashed()->where('id',$id)->first();
+          $posts->restore();
+           toastr()->success('Data has been deleted successfully!');
+            return redirect()->route('post.index');
+    }
+    public function kill($id){
+        $posts= Post::withTrashed()->where('id',$id)->first();
+        $posts->forceDelete();
+        toastr()->success('Data has been deleted successfully!');
+         return redirect()->route('post.trashed');
     }
 }

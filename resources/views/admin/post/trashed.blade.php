@@ -13,29 +13,37 @@
             <thead>
              <th>Image</th>
              <th>Post Title</th>
-             <th>Post Content</th>
+            
              <th>Edit</th>
-             <th>Trashed</th> 
+             <th>Restore</th> 
+             <th>Delete permently</th>
             </thead>
-            <tbody>  
-                   
-                @if ($posts->count()>0)
-                 @foreach ($posts as $post)
-                    <tr>                          
+            <tbody>    
+                @if($posts->count()>0) 
+                    @foreach ($posts as $post)
+                    <tr>
+                          
                         <td><img src="{{asset($post->picture)}}" alt="{{$post->title}}" width="90px" height="90px"></td>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->content}}</td>
+                            
                             
                             <td><a href="{{route('post.edit',['id'=>$post->id])}}">Edit</a></td>
-                            <td><a href="{{route('post.delete',['id'=>$post->id])}}">delete</a></td>   
+                            <td><a href="{{route('post.restore',['id'=>$post->id])}}">Restore</a></td>
+                            <td><a href="{{route('post.kill',['id'=>$post->id])}}">Delete</a></td>   
+                            
+                            
+                        
                     </tr>
                 @endforeach
+
                 @else
                     <tr  class="bg-warning ">
-                        <td class="text-center">You have no  posts for now</td>
+                        <td class="text-center">You have no trashed posts for now</td>
                     </tr>
-                    
+                   
+
                 @endif
+                    
                
             </tbody>
         </table>

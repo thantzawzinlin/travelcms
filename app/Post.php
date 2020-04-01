@@ -16,4 +16,8 @@ class Post extends Model
     {
         return asset($image);
     } //မပါလဲရ image show 
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 }
