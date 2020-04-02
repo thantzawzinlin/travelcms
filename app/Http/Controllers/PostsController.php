@@ -90,7 +90,7 @@ class PostsController extends Controller
     public function edit($id)
     {
         $posts=Post::findOrFail($id);
-        return view('admin.post.edit')->with('posts',$posts)->with('categories',Category::all());
+        return view('admin.post.edit')->with('posts',$posts)->with('categories',Category::all())->with('tags',Tag::all());
     }
 
     /**
@@ -104,10 +104,9 @@ class PostsController extends Controller
     {
         $this->validate($request,[
             'title'=>'required',
-            'content'=>'required',
+            'content'=>'required'       
            
-           
-            'cat_id'=>'required'
+            
            
             
         ]);
@@ -129,7 +128,7 @@ class PostsController extends Controller
             $post->slug = Str::slug($request->title);
             $post->save();
 
-       
+       $post->tags()->sync($request->tags);
         toastr()->success('Data has been updated successfully!');
        return redirect()->route('post.index');
     }
