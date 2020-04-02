@@ -132,6 +132,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'UsersController@destroy',
         'as'=>'user.delete'
     ]);
+    Route::get('users/admin/{id}',[
+        'uses'=>'UsersController@admin',
+        'as'=>'user.admin'
+    ]);
+     Route::get('users/Notadmin/{id}',[
+        'uses'=>'UsersController@Notadmin',
+        'as'=>'user.notadmin'
+    ]);
 
 
 

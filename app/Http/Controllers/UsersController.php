@@ -96,4 +96,18 @@ class UsersController extends Controller
     {
         //
     }
+    public function admin($id){
+        $user=User::findOrFail($id);
+        $user->admin=1;
+        $user->save();
+         toastr()->success('You had changed user permission successfully!');
+       return redirect()->route('user.index');
+    }
+    public function Notadmin($id){
+        $user=User::findOrFail($id);
+        $user->admin=0;
+        $user->save();
+         toastr()->success('You had changed user permission successfully!');
+       return redirect()->route('user.index');
+    }
 }

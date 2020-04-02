@@ -23,7 +23,13 @@
                     <tr>                          
                     <td><img src="{{asset($user->profile1->avartar)}}" alt="" width="50px" height="50px" style="border-radius:50%;"></td>
                     <td>{{$user->name}}</td>
-                    <td>Permissions</td>
+                    <td>
+                        @if($user->admin)
+                        <a href="{{route('user.notadmin',['id'=>$user->id])}}" class="btn btn-xs btn-danger">Remove Permission</a>
+                        @else
+                            <a href="{{route('user.admin',['id'=>$user->id])}}" class="btn btn-xs btn-success">Make Admin</a>
+                        @endif
+                    </td>
                     <td>Delete</td>
                     </tr>
                 @endforeach
