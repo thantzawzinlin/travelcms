@@ -90,6 +90,7 @@
                                  <li class="list-group-item"><a href="{{route('user.index')}}">All User</a></li>
                                  <li class="list-group-item"><a href="{{route('user.create')}}">Create user</a></li>
                             @endif
+                             <li class="list-group-item"><a href="{{route('user.profile')}}">Eidt Your Profile</a></li>
                         </ul>
                    </div>
                     @endif 

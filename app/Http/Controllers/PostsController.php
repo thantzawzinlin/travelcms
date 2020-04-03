@@ -27,9 +27,15 @@ class PostsController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.post.create')->with('categories',Category::all())
-                                        ->with('tags',Tag::all());
+        $categories=Category::all();
+        $tags=Tag::all();
+        if($categories->count()== 0 || $tags->count()==0)
+        {
+            toastr()->success('You need to create some tags and category first');
+            return redirect()->back();
+        }
+        return view('admin.post.create')->with('categories',$categories)
+                                        ->with('tags',$tags);
     }
 
     /**

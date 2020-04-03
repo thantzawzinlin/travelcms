@@ -21,8 +21,8 @@ class UsersTableSeeder extends Seeder
             'user_id'=>$user->id,
             'avartar'=>'/profile/pic/a.jpg',
             'about'=>'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate sit eius tenetur dolorem. Autem,',
-            'facebook'=>'www.facebook.com',
-            'youtube'=>'www.youtube.com'
+            'facebook'=>'https://www.facebook.com',
+            'youtube'=>'https://www.youtube.com'
         ]);
     }
 }

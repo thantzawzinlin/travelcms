@@ -120,14 +120,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'UsersController@store',
         'as'=>'user.store'
     ]);
-    Route::get('users/edit/{id}',[
-        'uses'=>'UsersController@edit',
-        'as'=>'user.edit'
-    ]);
-    Route::post('users/update/{id}',[
-        'uses'=>'UsersController@update',
-        'as'=>'user.update'
-    ]);
+    // Route::get('users/edit/{id}',[
+    //     'uses'=>'UsersController@edit',
+    //     'as'=>'user.edit'
+    // ]);
+    // Route::post('users/update/{id}',[
+    //     'uses'=>'UsersController@update',
+    //     'as'=>'user.update'
+    // ]);
     Route::get('users/delete/{id}',[
         'uses'=>'UsersController@destroy',
         'as'=>'user.delete'
@@ -139,6 +139,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
      Route::get('users/Notadmin/{id}',[
         'uses'=>'UsersController@Notadmin',
         'as'=>'user.notadmin'
+    ]);
+    Route::get('users/profile',[
+        'uses'=>'ProfilesController@index',
+        'as'=>'user.profile'
+    ]);
+    Route::post('users/profile/update',[
+        'uses'=>'ProfilesController@update',
+        'as'=>'user.profile.update'
     ]);
 
 
