@@ -144,6 +144,7 @@ class PostsController extends Controller
     {
         $posts=Post::findOrFail($id);
         $posts->delete();
+        
         toastr()->success('Data has been deleted successfully!');
        return redirect()->route('post.index');
     }

@@ -99,6 +99,7 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category=Category::findOrFail($id);
+        
         $category->delete();
         toastr()->success('Data has been deleted successfully!');
        return redirect()->route('index');

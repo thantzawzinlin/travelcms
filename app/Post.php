@@ -17,7 +17,10 @@ class Post extends Model
         return asset($image);
     } //မပါလဲရ image show 
 
+    protected $dates = ['deleted_at'];
+
     public function tags(){
         return $this->belongsToMany('App\Tag');
     }
+     
 }
