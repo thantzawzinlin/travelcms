@@ -15,6 +15,7 @@
        
          <form action="{{route('post.store')}}" method="POST" enctype='multipart/form-data'>
         @csrf
+        @trix(\App\Post::class, 'content')
           <div class="form-group">
               <label for="title">Title</label>
               <input type="text" name="title" class="form-control">
@@ -67,3 +68,28 @@
 
 
 @stop
+
+@section('style')
+
+
+    
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+
+@stop
+@section('scripts')
+
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+<script>
+    $(document).ready(function() {
+  $('#content').summernote();
+});
+</script>
+
+@stop
+
+
+
+
+    
+    

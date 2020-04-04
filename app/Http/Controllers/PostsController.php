@@ -66,7 +66,8 @@ class PostsController extends Controller
             'title'=>$request->title,
             'content'=>$request->content,
             'picture'=>'images/'.$imageName,
-            'cat_id'=>$request->cat_id,            
+            'cat_id'=>$request->cat_id,    
+            //'post-trixFields' => request('post-trixFields'),        
             'slug' => Str::slug($request->title)
             
 

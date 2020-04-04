@@ -18,7 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- //@trixassets --}}
+    @yield('style')
     @toastr_css
+    
 </head>
 <body>
     <div id="app">
@@ -89,6 +92,7 @@
                             @if(Auth::user()->admin)
                                  <li class="list-group-item"><a href="{{route('user.index')}}">All User</a></li>
                                  <li class="list-group-item"><a href="{{route('user.create')}}">Create user</a></li>
+                                 <li class="list-group-item"><a href="{{route('setting.index')}}">Update Site Setting</a></li>
                             @endif
                              <li class="list-group-item"><a href="{{route('user.profile')}}">Eidt Your Profile</a></li>
                         </ul>
@@ -103,8 +107,11 @@
            </div>
         </main>
     </div>
-</body>
-@jquery
+    
+    @jquery
     @toastr_js
     @toastr_render
+    @yield('scripts')
+</body>
+
 </html>

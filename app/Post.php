@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+//use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 class Post extends Model
 {
     use SoftDeletes;
@@ -22,5 +23,9 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag');
     }
+    //Trix Editor
+    // use HasTrixRichText;
+    
+    // protected $guarded = [];
      
 }
