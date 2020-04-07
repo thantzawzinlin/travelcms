@@ -51,7 +51,7 @@ class PostsController extends Controller
             'content'=>'required',
             //'picture'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             'picture'=>'required|image',
-            'cat_id'=>'required'
+            'category_id'=>'required'
            // 'slug'=>'required'
             
         ]);
@@ -66,7 +66,7 @@ class PostsController extends Controller
             'title'=>$request->title,
             'content'=>$request->content,
             'picture'=>'images/'.$imageName,
-            'cat_id'=>$request->cat_id,    
+            'category_id'=>$request->category_id,    
             //'post-trixFields' => request('post-trixFields'),        
             'slug' => Str::slug($request->title)
             
@@ -112,7 +112,7 @@ class PostsController extends Controller
         $this->validate($request,[
             'title'=>'required',
             'content'=>'required',  
-            'cat_id'=>'required'     
+            'category_id'=>'required'     
            
             
            
@@ -132,7 +132,7 @@ class PostsController extends Controller
             $post->title=$request->title;
             $post->content=$request->content;
            
-           $post->cat_id=$request->cat_id;            
+           $post->category_id=$request->category_id;            
             $post->slug = Str::slug($request->title);
             $post->save();
 

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Category;
-use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+use Illuminate\Http\Request;
+use App\Setting;
+use App\Post;
+use App\Category;
+class FrontendController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,9 +14,18 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $categories=Category::latest()->get();
-        return view('admin.category.index')->with('categories',$categories);
+    {
+        // $test=Post::orderBy('created_at','desc')->skip(1)->take(1)->get()->first();
+        // dd($test);
+        //return view('welcome')->with('title',Setting::first());
+        return view('welcome')->with('title',Setting::first()->site_name)
+                              ->with('categories',Category::take(5)->get())
+                              ->with('first_post',Post::orderBy('created_at','desc')->first())
+                              ->with('second_post',Post::orderBy('created_at','desc')->skip(1)->take(1)->get()->first())
+                              ->with('third_post',Post::orderBy('created_at','desc')->skip(2)->take(1)->get()->first())
+                              ->with('indoor',Category::find(4))
+                              ->with('outdoor',Category::find(5));
+
     }
 
     /**
@@ -24,7 +35,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        //
     }
 
     /**
@@ -35,16 +46,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' =>'required|unique:categories'
-        ]);
-        $category=new Category();
-        $category->name=$request->name;
-        $category->save();
-
-       toastr()->success('Data has been saved successfully!');
-
-       return redirect()->route('index');
+        //
     }
 
     /**
@@ -66,8 +68,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $categories=Category::findOrFail($id);
-        return view('admin.category.edit')->with('categories',$categories);
+        //
     }
 
     /**
@@ -79,15 +80,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $this->validate($request,[
-            'name' =>'required|unique:categories'
-        ]);
-        $category=Category::findOrFail($id);
-        $category->name=$request->name;
-        $category->save();
-       toastr()->success('Data has been updated successfully!');
-
-       return redirect()->route('index');
+        //
     }
 
     /**
@@ -98,10 +91,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::findOrFail($id);
-        $category->posts()->delete();
-        $category->delete();
-        toastr()->success('Data has been deleted successfully!');
-       return redirect()->route('index');
+        //
     }
 }

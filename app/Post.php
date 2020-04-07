@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
-    public function category1(){
-        return $this->belongsTo('App\Category','cat_id');
+    public function category(){
+        return $this->belongsTo('App\Category');
     }
-    protected $fillable=['title','picture','cat_id','content','slug'];//it is important to add slug with mass assignment problem
+    protected $fillable=['title','picture','category_id','content','slug'];//it is important to add slug with mass assignment problem
 
     public function getimageAttribute($image)
     {

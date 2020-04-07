@@ -9,5 +9,7 @@ class Category extends Model
     public function posts(){
         return $this->hasMany('App\Post');
     }
+    // protected $primaryKey = 'cat_id';
+    public $timestamps=false;
    
 }
