@@ -24,7 +24,8 @@ class FrontendController extends Controller
                               ->with('second_post',Post::orderBy('created_at','desc')->skip(1)->take(1)->get()->first())
                               ->with('third_post',Post::orderBy('created_at','desc')->skip(2)->take(1)->get()->first())
                               ->with('indoor',Category::find(4))
-                              ->with('outdoor',Category::find(5));
+                              ->with('outdoor',Category::find(5))
+                              ->with('footer',Setting::first());
 
     }
 
@@ -33,9 +34,21 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function singlePage($slug)
     {
-        //
+       
+        $post=Post::where('slug',$slug)->first();
+         $next=Post::where('id','>',$post->id)->min('id');
+        $prev=Post::where('id','<',$post->id)->max('id');
+        return view('single')->with('post',$post)
+                             ->with('title',Setting::first()->site_name)
+                             ->with('categories',Category::take(5)->get())
+                             ->with('footer',Setting::first())
+                             ->with('next_post',Post::find($next))
+                             ->with('prev_post',Post::find($prev))
+                             
+
+                             ;
     }
 
     /**

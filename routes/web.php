@@ -161,7 +161,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'SettingsController@update',
         'as'=>'setting.update'
     ]);
-
+    
+    Route::get('/{slug}',[
+        'uses'=>'FrontendController@singlePage',
+        'as'=>'singlePage'
+    ]);
 
 
 });

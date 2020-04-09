@@ -13,7 +13,7 @@
             <thead>
              <th>Image</th>
              <th>Post Title</th>
-             <th>Post Content</th>
+             {{-- <th>Post Content</th> --}}
              <th>Edit</th>
              <th>Trashed</th> 
             </thead>
@@ -24,7 +24,7 @@
                     <tr>                          
                         <td><img src="{{asset($post->picture)}}" alt="{{$post->title}}" width="90px" height="90px"></td>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->content}}</td>
+                            {{-- <td>{{$post->content}}</td> --}}
                             
                             <td><a href="{{route('post.edit',['id'=>$post->id])}}">Edit</a></td>
                             <td><a href="{{route('post.delete',['id'=>$post->id])}}">delete</a></td>   
