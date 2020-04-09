@@ -88,9 +88,9 @@
 
                                     <span class="category">
                                         <i class="seoicon-tags"></i>
-                                        @foreach ($post->tags as $tag)
-                                            <a href="#">{{ $tag->tags }}</a>
-                                        @endforeach
+                                       
+                                            <a href="#">{{ $post->category->name }}</a>
+                                       
                                         
                                        
                                     </span>
@@ -232,15 +232,11 @@
                                 </div>
 
                                 <div class="tags-wrap">
-                                    <a href="#" class="w-tags-item">SEO</a>
-                                    <a href="#" class="w-tags-item">Advertising</a>
-                                    <a href="#" class="w-tags-item">Business</a>
-                                    <a href="#" class="w-tags-item">Optimization</a>
-                                    <a href="#" class="w-tags-item">Digital Marketing</a>
-                                    <a href="#" class="w-tags-item">Social</a>
-                                    <a href="#" class="w-tags-item">Keyword</a>
-                                    <a href="#" class="w-tags-item">Strategy</a>
-                                    <a href="#" class="w-tags-item">Audience</a>
+                                    @foreach ($post->tags as $tag)
+                                               
+                                                <a href="{{ route('taglist',['id'=>$tag->id]) }}" class="w-tags-item">{{ $tag->tags }}</a>
+                                    @endforeach
+                                    
                                 </div>
                             </div>
                         </aside>

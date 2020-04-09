@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Setting;
 use App\Post;
 use App\Category;
+use App\Tag;
 class FrontendController extends Controller
 {
     /**
@@ -57,9 +58,23 @@ class FrontendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function menuPage($id)
     {
-        //
+        // $category=Category::find($id);
+        // return view('menu')->with('category',$category)
+        // ->with('categories',Category::take(5)->get())
+        //                    ->with('footer',Setting::first())
+        //                    ->with('title',Setting::first()->site_name);
+          $category=Category::find($id);
+        return view('menu')->with('category',$category)
+                           
+                            ->with('categories',Category::take(5)->get())
+                           ->with('footer',Setting::first())
+                           ->with('title',$category->name);
+        
+        
+        
+        
     }
 
     /**
@@ -68,9 +83,22 @@ class FrontendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+      public function tagPage($id)
     {
-        //
+        // $category=Category::find($id);
+        // return view('menu')->with('category',$category)
+        // ->with('categories',Category::take(5)->get())
+        //                    ->with('footer',Setting::first())
+        //                    ->with('title',Setting::first()->site_name);
+        $tag=Tag::find($id);
+        return view('tag')->with('tag',$tag)
+                            ->with('categories',Category::take(5)->get())
+                           ->with('footer',Setting::first())
+                           ->with('title',$tag->name);
+        
+        
+        
+        
     }
 
     /**

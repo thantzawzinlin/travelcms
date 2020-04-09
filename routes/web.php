@@ -166,6 +166,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'FrontendController@singlePage',
         'as'=>'singlePage'
     ]);
+    Route::get('menu/{id}',[
+        'uses'=>'FrontendController@menuPage',
+        'as'=>'menulist'
+    ]);
+      Route::get('tag/{id}',[
+        'uses'=>'FrontendController@tagPage',
+        'as'=>'taglist'
+    ]);
 
 
 });
