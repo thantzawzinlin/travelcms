@@ -33,15 +33,15 @@
           </div>
           <div class="form-group">
               <label for="facebook">facebook</label>
-              <input type="text" name="facebook" value="{{$user->profile1->facebook}}" class="form-control">
+              <input type="text" name="facebook" value="{{$user->profile->facebook}}" class="form-control">
           </div>
           <div class="form-group">
               <label for="youtube">youtube</label>
-              <input type="text" name="youtube" value="{{$user->profile1->youtube}}" class="form-control">
+              <input type="text" name="youtube" value="{{$user->profile->youtube}}" class="form-control">
           </div>
           <div class="form-group">
               <label for="about">About</label>
-              <textarea name="about" id="" cols="30" rows="10" value="{{$user->profile1->about}}" class="form-control"></textarea>
+              <textarea name="about" id="" cols="30" rows="10" value="{{$user->profile->about}}" class="form-control"></textarea>
           </div>
           <div class="form-group">
               <button type="submit" class="btn btn-success btn-md">Create User</button>

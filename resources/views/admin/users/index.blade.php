@@ -21,7 +21,7 @@
                 @if ($users->count()>0)
                  @foreach ($users as $user)
                     <tr>                          
-                    <td><img src="{{asset($user->profile1->avartar)}}" alt="" width="50px" height="50px" style="border-radius:50%;"></td>
+                    <td><img src="{{asset($user->profile->avartar)}}" alt="" width="50px" height="50px" style="border-radius:50%;"></td>
                     <td>{{$user->name}}</td>
                     <td>
                         @if($user->admin)

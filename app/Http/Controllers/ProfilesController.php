@@ -86,7 +86,7 @@ class ProfilesController extends Controller
         //     $destinationPath = 'profile/pic/';
         //     $uploadedImage->move($destinationPath, $imageName);
            
-        //     $user->profile1->avartar = $destinationPath . $imageName;
+        //     $user->profile->avartar = $destinationPath . $imageName;
         //     $user->save();
         // } It works too.
         if($request->hasFile('avartar'))
@@ -95,19 +95,19 @@ class ProfilesController extends Controller
             $New_avater=time().$avater->getClientOriginalName();
 
             $avater->move('profile/pic', $New_avater);
-            $user->profile1->avartar= 'profile/pic/'.$New_avater;
-            $user->profile1->save();
+            $user->profile->avartar= 'profile/pic/'.$New_avater;
+            $user->profile->save();
             $user->save(); //it is important to be user not [$avater->save()];
         }
       
         $user->name= $request->name;
         $user->email=$request->email;
-        $user->profile1->facebook=$request->facebook;
-        $user->profile1->youtube=$request->youtube;
-        $user->profile1->about=$request->about;
+        $user->profile->facebook=$request->facebook;
+        $user->profile->youtube=$request->youtube;
+        $user->profile->about=$request->about;
 
         $user->save();
-        $user->profile1->save();
+        $user->profile->save();
 
         if($request->has('password')){
             $user->password=bcrypt($request->password);

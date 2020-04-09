@@ -24,7 +24,7 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
     }
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);//post<->user One To Many Relationship
     }
     //Trix Editor
     // use HasTrixRichText;

@@ -6,6 +6,7 @@ use App\Category;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -68,7 +69,8 @@ class PostsController extends Controller
             'picture'=>'images/'.$imageName,
             'category_id'=>$request->category_id,    
             //'post-trixFields' => request('post-trixFields'),        
-            'slug' => Str::slug($request->title)
+            'slug' => Str::slug($request->title),
+            'user_id'=>Auth::id()
             
 
         ]);

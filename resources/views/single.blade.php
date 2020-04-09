@@ -41,7 +41,7 @@
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">{{ $post->category->name }}</a>
+                                            <a href="{{ route('menulist',['id'=>$post->category->id]) }}">{{ $post->category->name }}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -71,7 +71,7 @@
                                         Posted by
 
                                         <div class="post__author-name fn">
-                                            <a href="#" class="post__author-link">Admin</a>
+                                            <a href="#" class="post__author-link">{{ $post->user->name }}</a>
                                         </div>
 
                                     </div>
@@ -89,7 +89,7 @@
                                     <span class="category">
                                         <i class="seoicon-tags"></i>
                                        
-                                            <a href="#">{{ $post->category->name }}</a>
+                                            <a href="{{ route('menulist',['id'=>$post->category->id]) }}">{{ $post->category->name }}</a>
                                        
                                         
                                        
@@ -138,16 +138,15 @@
                         <div class="blog-details-author">
 
                             <div class="blog-details-author-thumb">
-                                <img src="{{ asset('app/img/blog-details-author.png') }}" alt="Author">
+                                <img src="{{ asset($post->user->profile->avartar) }}" width="90px" height="80" style="border-radius:50%" alt="Author">
                             </div>
 
                             <div class="blog-details-author-content">
                                 <div class="author-info">
-                                    <h5 class="author-name">Philip Demarco</h5>
-                                    <p class="author-info">SEO Specialist</p>
+                                    <h5 class="author-name">{{ $post->user->name }}</h5>
+                                   
                                 </div>
-                                <p class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                    nonummy nibh euismod.
+                                <p class="text">{{ $post->user->profile->about }}
                                 </p>
                                 <div class="socials">
 
