@@ -18,6 +18,16 @@ Route::get('/',[
     'uses'=>'FrontendController@index',
     'as'=>'welcome'
 ]);
+  Route::get('/search', function(){
+       $post= App\Post::where('title','like','%'. request('query') .'%')->get();
+        return view('search')->with('posts',$post)
+                        ->with('categories',App\Category::take(5)->get())
+                           ->with('settings',App\Setting::first())
+                           ->with('footer',App\Setting::first())
+                           ->with('title', request('query'))
+                           ->with('query',request('query'));
+
+    });
 
 Auth::routes();
 
@@ -174,6 +184,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'FrontendController@tagPage',
         'as'=>'taglist'
     ]);
+  
 
 
 });
